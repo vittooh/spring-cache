@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    image: mdillon/postgis:11-alpine
+    environment:
+      POSTGRES_DB: "statistics"
+      POSTGRES_USER: "statistics"
+      POSTGRES_PASSWORD: "statistics"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
